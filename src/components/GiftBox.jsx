@@ -5,10 +5,6 @@ import { Gift } from 'lucide-react';
 import { bgMusic } from '../utils/audio';
 
 const GiftBox = ({ onOpen }) => {
-  // Autoplay musik saat halaman kado terbuka
-  useEffect(() => {
-    bgMusic.play().catch(e => console.log('Autoplay diblokir browser, pengguna harus klik tombol play manual:', e));
-  }, []);
   // Generate random hearts and sparkles for the background
   const decorations = useMemo(() => {
     const hearts = Array.from({ length: 15 }).map((_, i) => ({
@@ -138,7 +134,10 @@ const GiftBox = ({ onOpen }) => {
           transition: { duration: 0.5 }
         }}
         whileTap={{ scale: 0.9 }}
-        onClick={onOpen}
+        onClick={() => {
+          bgMusic.play().catch(e => console.log('Audio diputar manual oleh interaksi pengguna:', e));
+          onOpen();
+        }}
       >
         <Gift size={120} color="var(--primary-pink)" strokeWidth={1.5} />
       </motion.div>
