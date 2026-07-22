@@ -3,29 +3,22 @@ import { motion } from 'framer-motion';
 import { fadeIn, floatAnimation } from '../utils/animations';
 
 const Countdown = ({ onSkip }) => {
-  const [timeLeft, setTimeLeft] = useState({ Hari: 0, Jam: 0, Menit: 0, Detik: 0 });
+  const [timeLeft, setTimeLeft] = useState({ Hari: 0, Jam: 0, Menit: 0, Detik: 5 });
 
   useEffect(() => {
-    const targetDate = new Date('2026-07-24T00:00:00').getTime();
-
-    const updateTimer = () => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          Hari: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          Jam: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          Menit: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          Detik: Math.floor((difference % (1000 * 60)) / 1000),
-        });
+    let seconds = 5;
+    const interval = setInterval(() => {
+      seconds -= 1;
+      if (seconds >= 0) {
+        setTimeLeft({ Hari: 0, Jam: 0, Menit: 0, Detik: seconds });
+      } else {
+        clearInterval(interval);
+        onSkip();
       }
-    };
+    }, 1000);
 
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [onSkip]);
 
   // Generate random hearts and sparkles once
   const decorations = useMemo(() => {

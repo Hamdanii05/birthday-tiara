@@ -19,24 +19,6 @@ function App() {
     localStorage.setItem('appPhase', phase);
   }, [phase]);
 
-  useEffect(() => {
-    // Check date for phase 1 vs phase 2
-    // Target: July 24, 2026
-    const checkDate = () => {
-      const targetDate = new Date('2026-07-24T00:00:00').getTime();
-      const now = new Date().getTime();
-      
-      if (now < targetDate && phase === 'countdown') {
-        // Still waiting
-      } else if (now >= targetDate && phase === 'countdown') {
-        setPhase('gift');
-      }
-    };
-
-    checkDate();
-    const interval = setInterval(checkDate, 1000);
-    return () => clearInterval(interval);
-  }, [phase]);
 
   return (
     <div className="app-container">
