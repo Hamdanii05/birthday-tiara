@@ -209,36 +209,6 @@ const Countdown = ({ onSkip }) => {
             ))}
           </div>
 
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={onSkip}
-            style={{
-              padding: '12px 30px',
-              borderRadius: '30px',
-              border: '1px solid var(--accent-color)',
-              background: 'rgba(233, 30, 99, 0.1)',
-              color: 'var(--primary-pink)',
-              cursor: 'pointer',
-              fontSize: '1rem',
-              fontWeight: '500',
-              letterSpacing: '1px',
-              boxShadow: '0 0 15px rgba(233, 30, 99, 0.2)',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseOver={(e) => {
-              e.target.style.background = 'var(--accent-color)';
-              e.target.style.color = '#fff';
-              e.target.style.boxShadow = '0 0 25px rgba(233, 30, 99, 0.6)';
-            }}
-            onMouseOut={(e) => {
-              e.target.style.background = 'rgba(233, 30, 99, 0.1)';
-              e.target.style.color = 'var(--primary-pink)';
-              e.target.style.boxShadow = '0 0 15px rgba(233, 30, 99, 0.2)';
-            }}
-          >
-            Masuk Ke Halaman Kado (Testing)
-          </motion.button>
         </div>
       </div>
     </motion.div>
