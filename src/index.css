@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+:root {
+  --bg-color: #FFF5F7;
+  --primary-pink: #F8BBD0;
+  --secondary-pink: #F4C2C2;
+  --accent-color: #E91E63;
+  --text-color: #333333;
+  --card-bg: #FFFFFF;
+  --shadow: 0 10px 30px rgba(233, 30, 99, 0.08);
+  --shadow-hover: 0 15px 40px rgba(233, 30, 99, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+/* Utilities */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-screen {
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow);
+  border-radius: 20px;
+}
+
+/* Primary Button */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 14px 32px;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(248, 187, 208, 0.6);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(248, 187, 208, 0.8);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--secondary-pink), var(--primary-pink));
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+/* Polaroid */
+.polaroid {
+  background: var(--card-bg);
+  padding: 10px 10px 40px 10px;
+  box-shadow: var(--shadow);
+  border-radius: 2px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+/* Tape effect for polaroids */
+.polaroid::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  width: 80px;
+  height: 28px;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  /* Simulate torn tape edges */
+  border-left: 2px dashed rgba(0,0,0,0.1);
+  border-right: 2px dashed rgba(0,0,0,0.1);
+  z-index: 10;
+  backdrop-filter: blur(2px);
+}
